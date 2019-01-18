@@ -1,4 +1,6 @@
 /*
+[Currently incomplete]
+
 Given an array represents the terrain, a number represents units of water to dump,
 and a number represents the dump location, print out the terrain with water.
 
