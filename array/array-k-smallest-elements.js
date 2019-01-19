@@ -2,8 +2,14 @@
 Given an array, print k smallest elements from the array.  
 The output elements should be printed in increasing order.
 
-Key: 
+
+
+Algorithm: 
 Build a max heap
+Go through the list, put first k element into the heap.
+For rest of the list, if it is smaller than the largest number in the heap, 
+pop the heap, put current element on the heap.
+After entire list is processed, the heap has k smallest elements.
 */
 
 function MaxHeap() {

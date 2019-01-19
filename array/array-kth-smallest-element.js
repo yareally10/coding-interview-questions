@@ -1,10 +1,18 @@
 /*
 Given an unordered array. Find the kth smallest element.
 
+
 Algorithm:
 modified quick sort
+Pick an element, use it as pivot
+Put all elements smaller than pivot on left side of the array,
+put all elements greater than pivot on right side of the array.
+If pivot is the kth element, return it.
+If k is smaller than pivot's position, search the left side,
+otherwise, search the right side using updated k (subtract size of left array)
 */
 
+//this solution creates two extra arrays with total size of original
 function kthSmallest(arr, k) {
     var i, 
         pivot = arr[0], 
@@ -43,8 +51,6 @@ function kthSmallest(arr, k) {
       arr[i] = temp;
       counter++;
     }
-    //console.log("counter: " + counter);
-    //console.log(arr);
   }
   
   if(k == counter) {
@@ -55,44 +61,3 @@ function kthSmallest(arr, k) {
     return kthSmallest(arr.slice(counter, len), k - counter);
   }
 }
-
-/*
-function partition(arr, start, end) {
-    var pivot = arr[end],
-        i,
-        counter = start-1,
-        temp;
-
-    for(i=start; i < end; i++) {
-        if(arr[i] <= pivot) {
-            counter++;
-            if(counter != i) {
-                temp = arr[counter];
-                arr[counter] = arr[i];
-                arr[i] = temp;
-            }
-        }
-    }
-
-    temp = arr[counter+1];
-    arr[counter+1] = pivot;
-    arr[end] = temp;
-
-    return {
-        "array": arr,
-        "pos": counter+1
-    };
-}
-
-function kthSmallest(arr, k) {
-    var p = partition(arr, 0, arr.length-1);
-
-    if(k < p.pos + 1) {
-        return kthSmallest(p.array.slice(0, p.pos), k);
-    } else if(k > p.pos + 1) {
-        return kthSmallest(p.array.slice(p.pos+1), k - p.pos - 1);
-    } else {
-        return p.array[p.pos];
-    }
-}
-//*/
