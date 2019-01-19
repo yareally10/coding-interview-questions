@@ -1,19 +1,25 @@
 /*
-[Currently incomplete]
+[This is not a 45min problem.]
 
-Given an array represents the terrain, a number represents units of water to dump,
-and a number represents the dump location, print out the terrain with water.
+Given an array represents the terrain, a number represents units of water to 
+dump, and a number represents the dump location (array index), print out the 
+terrain with water.
 
 Example:
+Input:
 [5, 1, 2, 3, 4, 2, 1, 1, 4, 1, 2],
 15,
 6
 
+Output:
 +
 +www+www+
 +ww++www+
 +w++++ww+w+
 +++++++++++
+
+Test:
+dumpWater([5, 1, 2, 3, 4, 2, 1, 1, 4, 1, 2], 15, 6);
 */
 
 
@@ -28,30 +34,81 @@ function initMatrix(row, col, val) {
     return arr;
 }
 
+function generateNeighbors(matrix, row, col) {
+    var coords = [
+        [row-1, col], 
+        [row, col-1], [row, col+1],
+        [row+1, col]
+    ];
+
+    return coords.filter(function(e) {
+        return e[0] >=0 && e[1] >= 0 && e[0] < matrix.length && e[1] < matrix[0].length;
+    });
+}
+
+function process(arr) {
+    var i,
+        data = [],
+        len = arr.length,
+        leftVal = 0,
+        rightVal = 0,
+        max = 0;
+
+    for(i=0; i<len; i++) {
+        leftVal = arr[i] > leftVal ? arr[i] : leftVal;
+        data[i] = {
+            "left": leftVal,
+            "val": arr[i],
+            "total": arr[i]
+        };
+        max = arr[i] > max ? arr[i] : max;
+    }
+
+    for(i=len-1; i>=0; i--) {
+        rightVal = arr[i] > rightVal ? arr[i] : rightVal;
+        data[i]["right"] = rightVal;
+        data[i]["edge"] = data[i].left < data[i].right ? data[i].left : data[i].right;
+    }
+
+    data['max'] = max;
+
+    return data;
+}
+
 function calculate(datum) {
-    var edge = datum.left < datum.right ? datum.left : datum.right,
-        result = edge - datum.val;
+    var result = datum.edge - datum.val;
 
     return result > 0 ? result : 0;
 }
 
-function fillTerrainWithWater(data, terrain) {
+function generateTerrain(data, terrain, location) {
     var max = data.max,
         i, 
         j, 
-        edge,
         result = initMatrix(max, terrain.length, 0);
 
     for(i=max; i>0; i--) {
         for(j=0; j<terrain.length; j++) {
             if(i > data[j].val) {
-                edge = data[j].left < data[j].right ? data[j].left : data[j].right;
-                if(i > edge) {
-                    result[max-i][j] = " ";
+                //water cannot go above dump location's edge
+                if(i > data[location].edge) {
+                    result[max-i][j] = "x";
                 } else {
-                    result[max-i][j] = "w";
+                    //water cannot go above current point's edge
+                    if(i > data[j].edge) {
+                        result[max-i][j] = "x";
+                    } else {
+                        //if current point's edge is higher than dump location's, water can't go here
+                        if(data[j].edge > data[location].edge) {
+                            result[max-i][j] = "x";
+                        } else {
+                            //water can go here
+                            result[max-i][j] = " ";
+                        }
+                    }
                 }
             } else {
+                //walls
                 result[max-i][j] = "+";
             }
         }
@@ -59,7 +116,165 @@ function fillTerrainWithWater(data, terrain) {
     return result;
 }
 
-//------------------------------------------------
+function findLakes(map) {
+    var maxRow = map.length,
+        maxCol = map[0].length,
+        visited = initMatrix(maxRow, maxCol, 0),
+        i,
+        j,
+        queue = [],
+        currNeighbors = [],
+        lakes = [],
+        lakeCount = 0,
+        lake,
+        lakeLeftBound = 0,
+        lakeRightBound = 0,
+        lakeDepth = 0,
+        deepestPoint = [],
+        lakeArea = 0;
+
+    for(i=0; i<maxRow; i++) {
+        for(j=0; j<maxCol; j++) {
+            if(map[i][j] == ' ' && visited[i][j] == 0) {
+                //found start of a lake
+                lake = {};
+                lakeLeftBound = j;
+                lakeRightBound = j;
+                lakeDepth = i;
+                deepestPoint = [i, j];
+                lakeArea = 1;
+                queue = generateNeighbors(map, i, j);
+                visited[i][j] = 1;
+
+                //explore lake
+                while(queue.length > 0) {
+                    curr = queue.shift();
+                    if(map[curr[0]][curr[1]] == ' ' && visited[curr[0]][curr[1]] == 0) {
+                        visited[curr[0]][curr[1]] = 1;
+                        lakeLeftBound = curr[1] < lakeLeftBound ? curr[1] : lakeLeftBound;
+                        lakeRightBound = curr[1] > lakeRightBound ? curr[1] : lakeRightBound;
+                        lakeDepth = curr[0] > lakeDepth ? curr[0] : lakeDepth;
+                        
+                        lakeArea++;
+                        //add current neighbors to queue
+                        queue = queue.concat(generateNeighbors(map, curr[0], curr[1]));
+                    }
+                }
+                lake = {
+                    "left": lakeLeftBound,
+                    "right": lakeRightBound,
+                    "depth": lakeDepth,
+                    "area": lakeArea
+                }
+                lakes.push(lake);
+                lakeCount++;
+            }
+        }
+    }
+
+    return lakes;
+}
+
+
+function printMap(map) {
+    var result = "";
+
+    map.forEach(function(row) {
+        result += row.join("");
+        result += "\n";
+    });
+
+    return result;
+}
+
+function findLake(lakesData, location) {
+    var lake = null,
+        minLeftDistance = Number.MAX_SAFE_INTEGER,
+        minRightDistance = Number.MAX_SAFE_INTEGER,
+        currLeftDistance,
+        currRightDistance,
+        leftLake = null,
+        rightLake = null,
+        i;
+
+    for(i=0; i<lakesData.length; i++) {
+        if(lakesData[i].left <= location && lakesData[i].right >= location) {
+            //lake found
+            lake = lakesData[i];
+            lake["id"] = i;
+            break;
+        } else {
+            if(lakesData[i].right < location) {
+                currLeftDistance = location - lakesData[i].right;
+                if(currLeftDistance < minLeftDistance) {
+                    minLeftDistance = currLeftDistance;
+                    leftLake = lakesData[i];
+                    leftLake["id"] = i;
+                }
+            } else if(lakesData[i].left > location) {
+                currRightDistance = lakesData[i].left - location;
+                if(currRightDistance < minRightDistance) {
+                    minRightDistance = currRightDistance;
+                    rightLake = lakesData[i];
+                    rightLake["id"] = i;
+                }
+            }
+        }
+    }
+
+    if(lake == null) {
+        lake = minLeftDistance < minRightDistance ? leftLake : rightLake;
+    }
+
+    return lake;
+}
+
+function fillLake(map, lake, location, amount) {
+
+}
+
+function dumpWater(terrain, amount, location) {
+    var data = process(terrain),
+        map = generateTerrain(data, terrain, location),
+        lakesData = findLakes(map),
+        waterDumped = 0,
+        waterRemain,
+        waterToFill,
+        currLake,
+        result = "",
+        i;
+
+    console.log(map);
+    console.log(lakesData);
+
+    while(waterDumped < amount) {
+        waterRemain = amount - waterDumped;
+        currLake = findLake(lakesData, location);
+        //remove current lake from rotation
+        lakesData.splice(currLake.id, 1);
+
+        //fill amount of water remaining or the entire lake
+        if(currLake.area <= waterRemain) {
+            waterToFill = currLake.area;
+        } else {
+            waterToFill = waterRemain;
+        }
+
+        fillLake(map, currLake, location, waterToFill);
+        //update water dumped
+        waterDumped += currLake.area;
+    }
+
+    result = printMap(map);
+
+    return result;
+}
+
+
+//-----------------------------------------------------------------------------
+//The following is an attempt at solving this problem without using a 2D matrix
+//It is still incomplete due to a greedy scanning algorithm.
+//-----------------------------------------------------------------------------
 
 function process(arr) {
     var i,
