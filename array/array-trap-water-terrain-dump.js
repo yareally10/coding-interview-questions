@@ -6,7 +6,7 @@ This is a much more difficult version of the previous (trap rain water) problem.
 Given an array represents the terrain (in bar graph form), a number represents 
 units of water to dump, and a number represents the dump location (array index), 
 print out the final terrain with water. Water will spill if not held by walls 
-formed by thenumbers.
+formed by the numbers.
 
 Example:
 Input:
