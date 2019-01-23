@@ -1,10 +1,20 @@
 /*
 Given an unordered array. Find the kth smallest element.
 
+Example:
+array: [3, 5, 1, 2, 7, 6, 8, 4]
+k: 5
+return: 5
+
+Test:
+kthSmallest([3, 5, 1, 2, 7, 6, 8, 4], 5)
+
+
 
 Algorithm:
-modified quick sort
-Pick an element, use it as pivot
+This is a modified quick sort.
+
+Pick an element in the array, use it as pivot.
 Put all elements smaller than pivot on left side of the array,
 put all elements greater than pivot on right side of the array.
 If pivot is the kth element, return it.

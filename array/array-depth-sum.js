@@ -1,7 +1,14 @@
 /*
-Depth sum of a list
+Depth sum of a list. The depth sum is the sum of all list elements multiplied by
+its depth. The depth of an element is increased by one each time it is wrapped 
+inside a list.
 
-E.G. [1, 2, [3, [4]]] = 1*1 + 2*1 + (3 + 4*3)*2 = 33
+Example: 
+[1, 2, [3, [4]]] = 1*1 + 2*1 + (3 + 4*3)*2 = 33
+
+Test:
+depthSum([1, 2, [3, [4]]]);
+
 
 
 Algorithm:
@@ -12,9 +19,6 @@ Otherwise, process the first element
     Otherwise, first element is a number,
     multiply the first element value by current level, 
     add the rest of the list (recursive call on rest of list with same level)
-
-Test:
-depthSum([1, 2, [3, [4]]]);
 */
 
 function depthSumHelper(arr, currLevel) {

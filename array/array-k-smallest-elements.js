@@ -2,6 +2,10 @@
 Given an array, print k smallest elements from the array.  
 The output elements should be printed in increasing order.
 
+Example:
+array: [3, 5, 1, 2, 7, 6, 8, 4]
+k: 3
+return: [1, 2, 3]
 
 
 Algorithm: 
