@@ -1,23 +1,29 @@
 /*
-You are working on a computer simulation of a mobile robot. The robot moves on an 
-infinite plane. Its movements are described by a command string consisting of 
+You are working on a computer simulation of a mobile robot. The robot moves on 
+an infinite plane. Its movements are described by a command string consisting of 
 one or more of the following three letters:
 G - instructs the robot to move forward one step.
 L - instructs the robot to turn left.
 R - instructs the robot to turn right.
 
 The robot performs the instructions in a command sequence in an infinite loop. 
-You want to know whether or not there exists some circle such that the robot always 
-moves within the circle and never leaves it.
+You want to know whether or not there exists some circle such that the robot 
+always moves within the circle and never leaves it.
 
-Consider the commands R and G executed infinitely. A diagram of the robot's movement 
-looks like:
+Consider the commands R and G executed infinitely. A diagram of the robot's 
+movement looks like:
 RG -> RG
 ^     |
 |     v
 RG <- RG
 
-Key: Execute command four times and see if the robot is back to original spot
+Question: Given a command, find out if it makes the robot go in a circle.
+
+
+
+
+Key: 
+Execute command four times and check if the robot is back to original spot
 */
 
 function moveRobot(currPos, heading) {

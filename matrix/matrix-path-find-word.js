@@ -1,31 +1,32 @@
 /*
-Given a 2D array of characters and a string, return the number of times the string occurs 
-in the grid, with no overlap. Words are considered contiguous if the next letter in the 
-word is up, down, left, or right of the current letter. For example, suppose the grid is:
+Given a 2D array of characters and a string, return the number of times the 
+string occurs in the grid, with no overlap. Words are considered contiguous if 
+the next letter in the word is up, down, left, or right of the current letter. 
+For example, suppose the grid is:
 
-x x x g
-g o o o
-o l g l
-g e x e
+x x x p
+p o o o
+o l d l
+d e x e
 s s e s
 o x r p
 
-If given the word "google", the function should return 4. For "espresso", the function 
-should return 1.
+If given the word "poodle", the function should return 4. For "espresso", the 
+function should return 1.
 
 
 Algorithm:
-For each letter that matches the first letter of the word, do BFS on all its neighbors 
-for next letter.
+For each letter that matches the first letter of the word, do BFS on all its 
+neighbors for next letter.
 Repeat until a mismatch (fail) or the entire word is found (success).
 Do this for all nodes in matrix.
 
 Tests:
 findWord([
-["x", "x", "x", "g"],
-["g", "o", "o", "o"],
-["o", "l", "g", "l"],
-["g", "e", "x", "e"],
+["x", "x", "x", "p"],
+["p", "o", "o", "o"],
+["o", "l", "d", "l"],
+["d", "e", "x", "e"],
 ["s", "s", "e", "s"],
 ["o", "x", "r", "p"]
 ],

@@ -1,6 +1,9 @@
 /*
 Given a matrix of 0s and 1s, find shortest path between the top left corner 
-and bottom right, where 0 is passable. Can move in all four directions, not diagonal.
+and bottom right, where 0 is passable. Can move in all four directions, but not 
+diagonally.
+
+
 
 Test:
 findPath([

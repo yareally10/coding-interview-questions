@@ -1,9 +1,11 @@
 /*
-Design a Data Structure SpecialStack that supports all the stack operations like push(), 
-pop(), isEmpty(), and an additional operation getMin() which should return minimum 
-element from the SpecialStack. All these operations of SpecialStack must be O(1). 
-To implement SpecialStack, you should only use standard Stack data structure and no 
-other data structure like arrays, list, .. etc.
+Design a Data Structure SpecialStack that supports all the stack operations like 
+push(), pop(), isEmpty(), and an additional operation getMin() which should 
+return minimum element from the SpecialStack. All these operations of 
+SpecialStack must be O(1). To implement SpecialStack, you should only use 
+standard Stack data structure and no other data structure like arrays, list.
+
+
 
 Algorithm:
 While pusing, if minimum already exists, and another number smaller than minimum is pushed,

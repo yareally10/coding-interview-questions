@@ -1,6 +1,7 @@
 /*
-Given a 2D matrix, find the number of islands. A group of connected 1s forms an island. 
-For example, the below matrix contains 5 islands. (Neighbors include diagonal.)
+Given a 2D matrix, find the number of islands. A group of connected 1s forms an 
+island. For example, the below matrix contains 5 islands. 
+(Neighbors include diagonal.)
 
 Input : mat[][] = {{1, 1, 0, 0, 0},
                    {0, 1, 0, 0, 1},
@@ -9,9 +10,12 @@ Input : mat[][] = {{1, 1, 0, 0, 0},
                    {1, 0, 1, 0, 1}}
 Output : 5
 
+
+
 Algorithm:
 Create an empty matrix to mark 1s visited.
-Scan the matrix for 1s, for each 1 found, use DFS to scan for neighbors that are also 1
+Scan the matrix for 1s, for each 1 found, use DFS to scan for neighbors that are 
+also 1
 Mark all 1s visited 
 Increment island count
 Continue until all 1s in matrix have been visited

@@ -1,8 +1,10 @@
 /*
-Check if string is a formatted number
+Check if a given string is a formatted number
+
+
 
 Key:
-Start from the end of the number
+Start from the end of the string
 */
 
 function isNumber(str) {

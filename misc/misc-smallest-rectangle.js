@@ -1,6 +1,8 @@
 /*
-Given a list of points, find the smallest rectangle area formed by those points as corners. 
-All rectangles are parallel to x and y axis
+Given a list of points, find the smallest rectangle area formed by those points 
+as corners. All rectangles are parallel to x and y axis
+
+
 
 Algorithm:
 Go through the list, create a hash table,

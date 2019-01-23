@@ -1,7 +1,9 @@
 /*
 Print a given matrix in spiral form
 
-Key:
+
+
+Algorithm key:
 Start with first row.
 When going horizontally (row), iterate column, fix row
 When going vertically (column), iterate row, fix column

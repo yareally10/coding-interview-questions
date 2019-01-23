@@ -1,6 +1,8 @@
-//Palindrome
+/*
+Palindrome. Check if given string is a palindrome.
+*/
 
-//pure string without spaces or punctuations
+//string without spaces or punctuations
 function isPalindromeBasic(str) {
     var i = 0,
         len = str.length;
@@ -13,7 +15,7 @@ function isPalindromeBasic(str) {
     return true;
 }
 
-//with spaces or punctuations
+//string with spaces or punctuations (need to ignore)
 function isPalindrome(str) {
     var len = str.length,
         i = 0,
@@ -43,7 +45,9 @@ function isPalindrome(str) {
 }
 
 /*
-find longest palindrome
+Find the longest palindrome that's a substring of the given string
+
+
 
 Algorithm:
 Try to generate palidrome from within the string.

@@ -6,6 +6,8 @@ E.G: 15 => 3
 4+5+6
 7+8
 
+
+
 Algorithm:
 Say given number X is the sum of n consecutive integers starting at s, then
 X = (s + (s+n-1)) * n / 2

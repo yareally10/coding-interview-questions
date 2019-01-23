@@ -2,6 +2,8 @@
 Given a matrix, find number of paths from top left to lower right, 
 where 1 is passible and 0 not. Can only move down and right.
 
+
+
 Test:
 numberOfPaths([
     [1, 1, 1, 1],

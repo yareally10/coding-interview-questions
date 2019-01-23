@@ -1,15 +1,15 @@
 /*
-Rahul and Ankit are the only two waiters in Royal Restaurant. Today, the restaurant 
-received N orders. The amount of tips may differ when handled by different waiters, 
-if Rahul takes the ith order, he would be tipped Ai rupees and if Ankit takes this 
-order, the tip would be Bi rupees.
+Babu and Ankit are the only two waiters in Royal Restaurant. Today, the 
+restaurant received N orders. The amount of tips may differ when handled by 
+different waiters, if Ankit takes the ith order, he would be tipped Ai rupees 
+and if Babu takes this order, the tip would be Bi rupees.
 
-In order to maximize the total tip value they decided to distribute the order among 
-themselves. One order will be handled by one person only. Also, due to time constraints 
-Rahul cannot take more than X orders and Ankit cannot take more than Y orders. It is 
-guaranteed that X + Y is greater than or equal to N, which means that all the orders 
-can be handled by either Rahul or Ankit. Find out the maximum possible amount of total 
-tip money after processing all the orders.
+In order to maximize the total tip value they decided to distribute the order 
+among themselves. One order will be handled by one person only. Also, due to 
+time constraints Babu cannot take more than X orders and Ankit cannot take more 
+than Y orders. It is guaranteed that X + Y is greater than or equal to N, which 
+means that all the orders can be handled by either Babu or Ankit. Find out the 
+maximum possible amount of total tip money after processing all the orders.
 
 Input:
 The first line contains one integer, number of test cases.
@@ -21,9 +21,11 @@ Output:
 Print a single integer representing the maximum tip money they would receive.
 
 
-Algorithm:
 
+
+Algorithm:
 Go through both arrays and compare the values.
+
 
 Test:
 maximumTipCalculator(8, 4, 4,

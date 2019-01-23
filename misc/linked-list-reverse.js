@@ -4,126 +4,13 @@ Given a linked list, write a function to reverse every k nodes
 If a linked list is given as 1->2->3->4->5->6->7->8->NULL and k = 3 
 then output will be 3->2->1->6->5->4->8->7->NULL.
 
+
+
 Test:
 var l = new LinkedList();
 l.createFromArray([1, 2, 3, 4, 5, 6, 7, 8]);
 l.printList();
-*/
 
-function Node(val, next, prev) {
-    this.val = val;
-    this.next = next;
-    this.prev = prev;
-}
-
-function LinkedList() {
-    this.head = null;
-    this.tail = null;
-}
-
-LinkedList.prototype = {
-    push: function(val) {
-        const node = new Node(val, null, this.tail);
-        if(this.tail === null || this.head === null) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            this.tail.next = node;
-            this.tail = node;
-        }
-        return this;
-    },
-
-    addToHead: function(val) {
-        const node = new Node(val, this.head, null);
-        if(this.tail === null || this.head === null) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            this.head.prev = node;
-            this.head = node;
-        }
-        return this;
-    },
-
-    removeFromHead: function() {
-        this.head = this.head.next;
-        this.head.prev = null;
-        return this;
-    },
-
-    createFromArray: function(arr) {
-        var i, len = arr.length, list = null, node;
-        for(i=len-1; i>=0; i--) {
-            node = new Node(arr[i], list);
-            if(list === null) {
-                this.tail = node;
-            }
-            if(node.next != null) {
-                node.next.prev = node;
-            }
-            list = node;
-        }
-        this.head = list;
-
-        return this;
-    },
-
-    printList: function() {
-        var node = this.head, result = "";
-        while(node != null) {
-            result += node.val + "->";
-            node = node.next;
-        }
-        result += "null";
-
-        return result;
-    },
-
-    printFromTail: function() {
-        var node = this.tail, result = "";
-        while(node != null) {
-            result += node.val + "<-";
-            node = node.prev;
-        }
-        result += "null";
-
-        return result;
-    },
-
-    //reverse list in groups of k
-    reverse: function(k) {
-        var count, stack = [], currNode = this.head, stackNode = null;
-        while(currNode != null) {
-            count = 0;
-            while(currNode != null && count < k) {
-                stack.push(currNode);
-                count++;
-                currNode = currNode.next;
-            }
-
-            while(stack.length > 0) {
-                if(stackNode === null) {
-                    this.head = stack.pop();
-                    this.head.prev = null;
-                    stackNode = this.head;
-                } else {
-                    stackNode.next = stack.pop();
-                    stackNode.next.prev = stackNode;
-                    stackNode = stackNode.next;
-                }
-            }
-        }
-
-        stackNode.next = null;
-        this.tail = stackNode;
-        return this;
-    }
-}
-
-
-/*
-reverse singly linked list
 
 Reverse algorithm:
 recurse
@@ -261,6 +148,120 @@ LinkedList.prototype = {
         currHead.next = null;
         //*/
 
+        return this;
+    }
+}
+
+//------------------------------------------------------------------------------
+//The following is for doubly linked list
+//------------------------------------------------------------------------------
+function Node(val, next, prev) {
+    this.val = val;
+    this.next = next;
+    this.prev = prev;
+}
+
+function LinkedList() {
+    this.head = null;
+    this.tail = null;
+}
+
+LinkedList.prototype = {
+    push: function(val) {
+        const node = new Node(val, null, this.tail);
+        if(this.tail === null || this.head === null) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.tail.next = node;
+            this.tail = node;
+        }
+        return this;
+    },
+
+    addToHead: function(val) {
+        const node = new Node(val, this.head, null);
+        if(this.tail === null || this.head === null) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.head.prev = node;
+            this.head = node;
+        }
+        return this;
+    },
+
+    removeFromHead: function() {
+        this.head = this.head.next;
+        this.head.prev = null;
+        return this;
+    },
+
+    createFromArray: function(arr) {
+        var i, len = arr.length, list = null, node;
+        for(i=len-1; i>=0; i--) {
+            node = new Node(arr[i], list);
+            if(list === null) {
+                this.tail = node;
+            }
+            if(node.next != null) {
+                node.next.prev = node;
+            }
+            list = node;
+        }
+        this.head = list;
+
+        return this;
+    },
+
+    printList: function() {
+        var node = this.head, result = "";
+        while(node != null) {
+            result += node.val + "->";
+            node = node.next;
+        }
+        result += "null";
+
+        return result;
+    },
+
+    printFromTail: function() {
+        var node = this.tail, result = "";
+        while(node != null) {
+            result += node.val + "<-";
+            node = node.prev;
+        }
+        result += "null";
+
+        return result;
+    },
+
+    //reverse list in groups of k
+    reverse: function(k) {
+        var count, stack = [], currNode = this.head, stackNode = null;
+        while(currNode != null) {
+            count = 0;
+            while(currNode != null && count < k) {
+                stack.push(currNode);
+                count++;
+                currNode = currNode.next;
+            }
+
+            while(stack.length > 0) {
+                if(stackNode === null) {
+                    this.head = stack.pop();
+                    this.head.prev = null;
+                    stackNode = this.head;
+                } else {
+                    stackNode.next = stack.pop();
+                    stackNode.next.prev = stackNode;
+                    stackNode = stackNode.next;
+                }
+            }
+        }
+
+        stackNode.next = null;
+        this.tail = stackNode;
         return this;
     }
 }

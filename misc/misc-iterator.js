@@ -12,7 +12,6 @@ void remove()
     That is, remove the element that the previous next() returned
     This method can be called only once per call to next(), 
     otherwise an exception will be thrown.
-    See http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html#remove() for details.
     
     From the website:
     Removes from the underlying collection the last element returned

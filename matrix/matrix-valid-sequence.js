@@ -3,11 +3,10 @@ Given a matrix and a sequence of numbers. Check if the sequence is a valid path
 in the matrix. You can move in all four directions, but not diagonally. Also you
 can move across walls, i.e. top row can go to the bottom row.
 
-E.G.
+Example: 
 [[1, 2, 3],
  [4, 5, 6],
- [7, 8, 9]
-]
+ [7, 8, 9]]
 
 [7, 9, 8, 5, 4] => valid
 [7, 9, 5, 4] => invalid
