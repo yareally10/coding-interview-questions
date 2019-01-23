@@ -101,7 +101,7 @@ function waterSpill(data, terrain, location) {
         i--;
     }
 
-    //if left end is reached or if current value is greater than water level, left barrier is true
+    //if left end is reached or current value is greater than water level, left barrier is true
     if(i == 0 || data[i].val > leftDepth) {
         leftBarrier = true;
     }
@@ -119,7 +119,7 @@ function waterSpill(data, terrain, location) {
         i++;
     }
 
-    //if right end is reached, right barrier is true
+    //if right end is reached or current value is greater than water level, right barrier is true
     if(i == terrain.length-1 || data[i].val > rightDepth) {
         rightBarrier = true;
     }
@@ -152,17 +152,8 @@ function dropWater(data, terrain, location) {
             rightPoint = data[location+1],
             spillLocation;
 
-        if(point.total <= leftPoint.total && point.total <= rightPoint.total) {
-            if(point.edge > point.total) {
-                point.total++;
-            } else {
-                spillLocation = waterSpill(data, terrain, location);
-                if(spillLocation > 0) {
-                    return dropWater(data, terrain, spillLocation);
-                } else {
-                    return false;
-                }
-            }
+        if(point.total <= leftPoint.total && point.total <= rightPoint.total && point.edge > point.total) {
+            point.total++;
         } else {
             spillLocation = waterSpill(data, terrain, location);
             if(spillLocation > 0) {
@@ -192,11 +183,11 @@ function dumpWater(terrain, amount, location) {
     }
 
     for(var i=0; i<amount; i++) {
+        //if water cannot be dropped, stop
         if(!dropWater(data, terrain, location)) {
             break;
         }
         //show state after each drop; testing only
-        //result = printTerrain(data, terrain);
         console.log(printTerrain(data, terrain));
     }
 
