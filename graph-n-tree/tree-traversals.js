@@ -1,4 +1,7 @@
 /*
+All different tree traversals.
+Coded for binary tree.
+
         root
         /  \
        a    b
@@ -116,6 +119,7 @@ function postorderTraversal(root) {
     }
 }
 
+//key for breadth first, use a queue
 function breadthFirstTraversal(root) {
     var queue = [root], node;
 

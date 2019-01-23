@@ -1,6 +1,6 @@
 /*
-given a binary tree, return a list of nodes that can be "seen" from the right side
-node are uncovered on the right
+Given a binary tree, return a list of nodes that can be "seen" from the right 
+side. In other words, print node are uncovered from the right
 
 example: 
 
@@ -11,6 +11,7 @@ example:
 3
 
 returns [1, 5, 3]
+
 
 
 Algorithm: 

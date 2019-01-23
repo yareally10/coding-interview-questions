@@ -1,6 +1,9 @@
 /*
 Given root of binary search tree and K as input, find K-th smallest element in BST. 
 Your task is to return the K-th smallest element in BST.
+
+
+
 */
 
 function kSmallestHelper(root, k, count) {
@@ -31,6 +34,7 @@ function kSmallestHelper(root, k, count) {
 function kSmallest(root, k) {
     return kSmallestHelper(root, k, 0);
 }
+
 
 //Morris inorder traversal
 function kSmallestNoRecursion(root, k) {
@@ -74,11 +78,4 @@ function kSmallestNoRecursion(root, k) {
     }
 
     return result;
-}
-
-/*
-Create BST from an array
-*/
-function createBST(arr) {
-
 }

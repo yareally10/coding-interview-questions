@@ -1,6 +1,8 @@
 /*
 Find lowest common ancestor between two nodes of a binary search tree
 
+
+
 Algorithm:
 If root greater than both, go left
 If root less than both, go right

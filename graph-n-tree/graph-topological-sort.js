@@ -1,20 +1,4 @@
 /*
-topological sort
-
-Algorithm:
-Search the list of nodes/projects without any incoming edges/dependencies, 
-and add those to a queue.
-Process the queue as long as there are items on the queue.
-    Assign current item to top of queue. Dequeue.
-    Add current item to the result.
-    Remove all incoming edges from the current item
-    For each edge removed this way, check if the this item has no incoming edges
-        If so, add this item to the queue
-After processing the queue, if result contains all nodes, then done.
-Otherwise topological sort is impossible; a cycle exists.
-*/
-
-/*
 Alien Dictionary
 Given a sorted dictionary (array of words) of an alien language, 
 find order of characters in the language.
@@ -29,9 +13,24 @@ Similarly we can find other orders.
 Input:  words[] = {"caa", "aaa", "aab"}
 Output: Order of characters is 'c', 'a', 'b'
 
+
+
+
 Algorithm:
 First process the words into a dependency graph.
 Then perform topological sort. Print the result.
+
+Topological sort algorithm: 
+Search the list of nodes/projects without any incoming edges/dependencies, 
+and add those to a queue.
+Process the queue as long as there are items on the queue.
+    Assign current item to top of queue. Dequeue.
+    Add current item to the result.
+    Remove all incoming edges from the current item
+    For each edge removed this way, check if the this item has no incoming edges
+        If so, add this item to the queue
+After processing the queue, if result contains all nodes, then done.
+Otherwise topological sort is impossible; a cycle exists.
 
 graph node: {
     letter: val
@@ -127,7 +126,7 @@ function alienDictionary(words) {
             addToGraph(graph, edge);
         }
     }
-    console.log(JSON.stringify(graph));
+    //console.log(JSON.stringify(graph));
 
     result = topologicalSort(graph);
     return result;

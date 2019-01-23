@@ -18,15 +18,20 @@ Output: false
 Given array cannot represent preorder traversal
 of a Binary Search Tree.
 
+
+
 Algorithm:
-Similar to get next greater.
+Similar to get next greater problem.
+
 Create a stack.
-Set root to min integer.
+Initialize root to min value.
 For each element in array
-    if arr[i] is smaller than root, return false
+    if arr[i] is smaller than root, return false 
+        (this means we found an element on the right that's smaller than root)
     pop stack while arr[i] is greater than stack top
         make the last removed item new root
     push arr[i] onto stack
+If entire array is traversed, return true
 */
 
 function isArrayBST(arr) {

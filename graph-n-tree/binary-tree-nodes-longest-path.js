@@ -1,13 +1,17 @@
 /*
 Find the longest path between two nodes in a binary tree
 
+
+
 Algorithm:
 (Similar to findLargestDistance.)
-Find the height of each node, which is the larger of its (left/right) subtree height plus 1
-During this traversal, calculate largest distance with each node as the "root" 
+Find the height of each node, which is the larger of its (left/right) subtree 
+height plus 1
+During this traversal, calculate largest distance with each node as the "root," 
 which is 1+left+right
 
-Instead, store largest distance value, left path, and right path
+Instead of only storing the largest distance value, also store left path and 
+right path
 */
 
 function findLongestPathHelper(root, memo) {

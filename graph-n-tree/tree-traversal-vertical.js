@@ -1,5 +1,7 @@
 /*
-Given a binary tree, print it vertically.
+Given a binary tree, print it vertically, from left to right.
+
+
 
 Algorithm:
 Traverse the tree, starting from root, with distance of 0.
@@ -7,7 +9,8 @@ Traverse the tree, starting from root, with distance of 0.
     When going right, use distance + 1
 While traversing the tree, 
     keep track of min and max distance values
-    build a hash table where the key is the distance, and the value is a list of nodes
+    build a hash table where the key is the distance, and the value is a list of 
+    nodes
 After building the hash table, go through it from min distance to max
 */
 
@@ -43,6 +46,6 @@ function verticalTraversal(root) {
         });
     }
 
-    console.log(data);
+    //console.log(data);
     return result;
 }

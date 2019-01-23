@@ -1,9 +1,12 @@
 /*
 Find the largest distance between two nodes in a binary tree
 
+
+
 Algorithm:
-Find the height of each node, which is the larger of its (left/right) subtree height plus 1
-During this traversal, calculate largest distance with each node as the "root" 
+Find the height of each node, which is the larger of its (left/right) subtree 
+height plus 1
+During this traversal, calculate largest distance with each node as the "root," 
 which is 1+left+right
 */
 
