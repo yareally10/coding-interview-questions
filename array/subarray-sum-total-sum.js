@@ -1,6 +1,8 @@
 /*
 Given a list of numbers, find the sum of all subarrays
 
+
+
 Algorithm:
 Use mathematical formula
 f(i) = val * (n-i) * (i+1)

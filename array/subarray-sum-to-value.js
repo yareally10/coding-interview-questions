@@ -1,15 +1,17 @@
 /*
 Given a list of positive values, find a subarray that sums to a value.
 
+Test:
+subarraySum([15, 3, 19, 12, 2, 33, 4, 7, 5], 14);
+
+
 
 Algorithm:
-Use a sliding window, starting at the beginning of the list, and sum the values in the window.
+Use a sliding window, starting at the beginning of the list, and sum the values 
+in the window.
 If the current sum is less than the value, increase the window to the right.
 If the current sum is larger than the value, decrease the window from the left.
 Return true if the current sum equals to the value.
-
-Test:
-subarraySum([15, 3, 19, 12, 2, 33, 4, 7, 5], 14);
 */
 
 function subarraySum(arr, val) {

@@ -1,7 +1,9 @@
 /*
-The span S[i] of the stock’s price on a given day i is defined as the maximum number of 
-consecutive days just before the given day, for which the price of the stock on the 
-current day is less than or equal to its price on the given day.
+The span S[i] of the stock’s price on a given day i is defined as the maximum 
+number of consecutive days just before the given day, for which the price of the 
+stock on the current day is less than or equal to its price on the given day.
+
+
 
 Algorithm:
 Key, create a stack to store the index of stock price (value)
@@ -14,8 +16,8 @@ For each value,
     If the current value is greater than value referred by top of stack, 
         pop stack until it is not.
         Then,
-            if the stack is now empty, the result for current value is its index + 1,
-            otherwise the result is the current index minus value of top of stack
+            if the stack is empty, result for current value is its index + 1,
+            otherwise result is the current index minus value of top of stack
         Finally, 
             push current index onto stack
 */

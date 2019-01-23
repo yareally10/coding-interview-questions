@@ -1,10 +1,12 @@
 /*
-Input: An array of positive integers that represent the heights of bars in a bar chart.
+Input: An array of positive integers that represent the heights of bars in a bar 
+chart.
 
 Output: The number of "units" of water that the bar chart can hold.
 
-Note that water "spills over" the sides if there's nothing to contain it. Formally, a cell 
-can contain water if, and only if, it has a wall to its right and a wall to its left.
+Note that water "spills over" the sides if there's nothing to contain it. 
+Formally, a cell can contain water if, and only if, it has a wall to its right 
+and a wall to its left.
 
 Input: [5, 3, 2, 1, 5]
 Output: 9
@@ -28,13 +30,6 @@ Empty     Filled
 # # #     #.#.#
 #####     #####
 
-
-
-#   # #   #
-#   # #   #
-##  # ##  #
-### # ### #
-###########
 
 
 Algorithm: 

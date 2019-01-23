@@ -2,10 +2,14 @@
 Given an array of (neg and pos) integers and an integer k, 
 find the total number of continuous subarrays whose sum equals to k.
 
+
+
 Algorithm:
 For each element in list, 
     calculate total sum, counting itself
-    update hash table, if current sum exist, increment existing by 1; otherwise assign 1
+    update hash table, 
+        if current sum exist, increment existing by 1; 
+        otherwise assign 1
     check if hashTable(sum-k) exist, if so, add to result count
 */
 

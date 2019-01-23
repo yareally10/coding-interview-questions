@@ -2,6 +2,8 @@
 Given an array containing both negative and positive integers. 
 Find the contiguous sub-array with maximum sum.
 
+
+
 Kadane's Algorithm:
 For each element, calculate the sum of all elements up to this element,
 and push current element into current array holder
