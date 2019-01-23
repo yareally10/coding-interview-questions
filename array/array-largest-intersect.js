@@ -1,5 +1,19 @@
 /*
-Given two sorted arrays, find biggest consecutive intersect between them
+Given two sorted arrays, find largest consecutive intersect between them
+
+Example:
+Given these two sets:
+[1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14]
+[2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
+Return:
+[7, 8, 9, 10]
+
+Test:
+findLargestIntersect(
+    [1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14],
+    [2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
+);
+
 
 
 Algorithm:
@@ -11,11 +25,6 @@ Otherwise, increment the counter of the array with the smaller element,
 reset the current intersect.
 Return largest intersect once entire array is looped.
 
-Test:
-findLargestIntersect(
-    [1, 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14],
-    [2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
-);
 */
 
 function findLargestIntersect(arr1, arr2) {

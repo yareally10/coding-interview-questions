@@ -1,6 +1,17 @@
 /*
-Given an array of (neg and pos) integers and an integer k, 
-find the total number of continuous subarrays whose sum equals to k.
+Given an array of (neg and pos) integers and an integer k, find the total number 
+of continuous subarrays whose sum equals to k.
+
+Example: 
+Input: {2, -2, 3, 5, 4, 8, 19, 11, -7, -6, 10} and k = 8
+Output: 4
+    {2, -2, 3, 5}
+    {3, 5}
+    {8}
+    {11, -7, -6, 10}
+
+Test:
+subarraySum([2, -2, 3, 5, 4, 8, 19, 11, -7, -6, 10], 8);
 
 
 
@@ -26,8 +37,7 @@ function subarraySum(arr, k) {
         result += data.hasOwnProperty(sum - k) ? data[sum - k] : 0;
     }
 
-    console.log(data);
-
+    //console.log(data);
     return result;
 }
 

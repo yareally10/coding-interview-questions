@@ -3,12 +3,19 @@ The span S[i] of the stock’s price on a given day i is defined as the maximum
 number of consecutive days just before the given day, for which the price of the 
 stock on the current day is less than or equal to its price on the given day.
 
+Example:
+Input: {100, 80, 60, 70, 60, 75, 85}
+Output: {1, 1, 1, 2, 1, 4, 6}
+
+Test:
+stockSpan([100, 80, 60, 70, 60, 75, 85]);
+
 
 
 Algorithm:
 Key, create a stack to store the index of stock price (value)
 
-Walk through the list one by one.
+Walk through the list
 For each value, 
     If the current value is less than value referred by top of stack,
         push 1 into result (1 day)

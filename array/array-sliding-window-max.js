@@ -2,6 +2,13 @@
 Given an array and an integer k, find the maximum for each and every 
 contiguous subarray of size k.
 
+Example:
+Input: [9, 3, 5, 8, 7, 2, 6, 1, 4] and k=3
+Output: [9, 8, 8, 8, 7, 6, 6]
+
+Test:
+subarrayMax([9, 3, 5, 8, 7, 2, 6, 1, 4], 3);
+
 
 
 Algorithm:
@@ -40,7 +47,7 @@ function subarrayMax(arr, k) {
             queue.pop();
         }
         queue.push(arr[i]);
-        console.log(queue);
+        //console.log(queue);
     }
     maxima.push(queue[0]);
 

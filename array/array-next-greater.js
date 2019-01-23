@@ -1,11 +1,15 @@
 /*
 Given an array, print the Next Greater Element (NGE) for every element. 
-The Next greater Element for an element x is the first greater element 
-on the right side of x in array. 
+The Next greater Element for an element x is the first element on the right side 
+of x in array that is greater than x. 
 Elements for which no greater element exist, consider next greater element as -1
 
 Example: 
+Input: [9, 3, 5, 8, 7, 2, 6, 1, 4]
+Output: [-1, 5, 8, -1, -1, 6, -1, 4, -1]
 
+Test:
+nextGreater([9, 3, 5, 8, 7, 2, 6, 1, 4]);
 
 
 

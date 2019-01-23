@@ -1,6 +1,13 @@
 /*
-Given an array containing both negative and positive integers. 
-Find the contiguous sub-array with maximum sum.
+Given an array containing both negative and positive integers. Find the 
+contiguous sub-array with maximum sum.
+
+Example:
+Input: {-2, -3, 4, -1, -2, 1, 5, -3}
+Output: {4, -1, -2, 1, 5}
+
+Test:
+maxSubarraySum([-2, -3, 4, -1, -2, 1, 5, -3])
 
 
 
@@ -11,6 +18,7 @@ and push current element into current array holder
     If current sum is greater than current maximum, update current max
 Return current max after entire array is processed
 */
+
 function maxSubarraySum(arr) {
     var curr = 0,
         currArr = [],

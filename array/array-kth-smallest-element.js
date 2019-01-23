@@ -1,5 +1,5 @@
 /*
-Given an unordered array. Find the kth smallest element.
+Given an unordered array, find the kth smallest element.
 
 Example:
 array: [3, 5, 1, 2, 7, 6, 8, 4]

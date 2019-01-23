@@ -1,6 +1,10 @@
 /*
 Given a list of positive values, find a subarray that sums to a value.
 
+Example:
+Input: [15, 3, 19, 12, 2, 33, 4, 7, 5] and k = 14
+Output: [12, 2]
+
 Test:
 subarraySum([15, 3, 19, 12, 2, 33, 4, 7, 5], 14);
 
@@ -41,4 +45,3 @@ function subarraySum(arr, val) {
 
     return false;
 }
-
