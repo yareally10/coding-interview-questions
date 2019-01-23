@@ -1,7 +1,8 @@
 /*
-Take steps. Given a total stairs to climb, 
-and a list of number of steps you could take at once, 
-calculate the number of ways to reach the top
+Given a total stairs to climb, and a list of number of steps you could take at 
+once, calculate the number of ways to reach the top.
+
+
 
 Algorithm:
 f(val) = f(val - steps[0]) + f(val - steps[1]) + ...

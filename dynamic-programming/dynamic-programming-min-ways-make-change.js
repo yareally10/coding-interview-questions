@@ -1,6 +1,8 @@
 /*
 Given a value and list of coins, 
-find the minimum number of coins needed to make the change, if possible.
+list the minimum number of coins needed to make the change, if possible.
+
+
 
 Algorithm:
 f(val) = min( f(val - coins[0]) + 1, f(val - coins[1]) + 1, ... )
@@ -46,6 +48,6 @@ function makeChangeMin(val, coins) {
     var memo = {},
         result = makeChangeMinHelper(val, coins, memo);
 
-    console.log(memo);
+    //console.log(memo);
     return result;
 }

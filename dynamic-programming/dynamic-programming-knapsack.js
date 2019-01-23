@@ -2,6 +2,8 @@
 Given weights and values of n items, put these items in a knapsack of capacity W.
 Calculate the maximum total value in the knapsack. Cannot break items.
 
+
+
 Algorithm:
 f(capacity) = Max(
     (f(capacity - item1.weight) + item1.value), 
@@ -35,7 +37,7 @@ function knapsackHelper(capacity, items, memo) {
             values.push(memo[nextCap] + item.value);
         });
 
-        console.log(memo);
+        //console.log(memo);
         return Math.max(...values);
     }
 }

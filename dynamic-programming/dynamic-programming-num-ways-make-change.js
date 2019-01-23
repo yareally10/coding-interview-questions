@@ -2,6 +2,8 @@
 Given a value and a list of coin values, 
 find the number of ways to make the value using the coins.
 
+
+
 Algorithm:
 Initialize an array from 0 to val, with memo[0] = 1 (1 way to make 0)
 For each coin, loop through the array
@@ -25,7 +27,7 @@ function makeChange(val, coins) {
                 memo[i] += memo[i - coin];
             }
         }
-        console.log(memo);
+        //console.log(memo);
     });
 
     return memo[val];
