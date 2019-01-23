@@ -82,61 +82,56 @@ function waterSpill(data, terrain, location) {
         rightSpill = -1,
         leftBarrier = false,
         rightBarrier = false,
+        leftDepth = data[location].total,
+        rightDepth = data[location].total,
         leftDistance,
         rightDistance,
         newPos = -1;
 
     //scan left
-    for(i=location-1; i>0; i--) {
-        if(data[i].val > data[location].total) {
-            leftSpill = -1;
-            leftBarrier = true;
-            break;
-        } else {
-            //found hole on the left
-            if(data[i].total < data[location].total && data[i].total < data[i].edge) {
-                leftSpill = i;
-                break;
-            }
-            if(data[i].val == data[location].total) {
-                leftBarrier = true;
-            }
+    i = location-1;
+    while(i > 0 && data[i].total <= leftDepth) {
+        if(data[i].total < leftDepth && data[i].total < data[i].edge) {
+            leftDepth = data[i].total;
+            leftSpill = i;
         }
+        if(data[i].val == data[location].total) {
+            leftBarrier = true;
+        }
+        i--;
     }
-    //if left end is reached, left barrier is true
-    if(i == 0) {
+
+    //if left end is reached or if current value is greater than water level, left barrier is true
+    if(i == 0 || data[i].val > leftDepth) {
         leftBarrier = true;
     }
 
     //scan right
-    for(i=location+1; i<terrain.length-1; i++) {
-        if(data[i].val > data[location].total) {
-            rightSpill = -1;
-            rightBarrier = true;
-            break;
-        } else {
-            //found hole on the right
-            if(data[i].total < data[location].total && data[i].total < data[i].edge) {
-                rightSpill = i;
-                break;
-            }
-            if(data[i].val == data[location].total) {
-                rightBarrier = true;
-            }
-
+    i = location+1;
+    while(i<terrain.length-1 && data[i].total <= rightDepth) {
+        if(data[i].total < rightDepth && data[i].total < data[i].edge) {
+            rightDepth = data[i].total;
+            rightSpill = i;
         }
+        if(data[i].val == data[location].total) {
+            rightBarrier = true;
+        }
+        i++;
     }
+
     //if right end is reached, right barrier is true
-    if(i == terrain.length-1) {
+    if(i == terrain.length-1 || data[i].val > rightDepth) {
         rightBarrier = true;
     }
 
     //process new location
     if(leftSpill > 0 || rightSpill > 0) {
         //if neither or both barriers are crossed, use distance to determine spill location
-        if((leftBarrier == false && rightBarrier == false) || (leftBarrier == true && rightBarrier == true)) {
-            leftDistance = leftSpill != -1 ? location - leftSpill : Number.MAX_SAFE_INTEGER,
-            rightDistance = rightSpill != -1 ? rightSpill - location : Number.MAX_SAFE_INTEGER,
+        if((leftBarrier == false && rightBarrier == false) || 
+           (leftBarrier == true && rightBarrier == true)) {
+
+            leftDistance = leftSpill > 0 ? location - leftSpill : Number.MAX_SAFE_INTEGER;
+            rightDistance = rightSpill > 0 ? rightSpill - location : Number.MAX_SAFE_INTEGER;
             newPos = leftDistance < rightDistance ? leftSpill : rightSpill;
         } else if(leftBarrier == false) {
             newPos = leftSpill;
@@ -150,7 +145,7 @@ function waterSpill(data, terrain, location) {
 
 function dropWater(data, terrain, location) {
     if(location == 0 || location == terrain.length-1) {
-        return;
+        return false;
     } else {
         var point = data[location],
             leftPoint = data[location-1],
@@ -163,26 +158,29 @@ function dropWater(data, terrain, location) {
             } else {
                 spillLocation = waterSpill(data, terrain, location);
                 if(spillLocation > 0) {
-                    dropWater(data, terrain, spillLocation);
+                    return dropWater(data, terrain, spillLocation);
+                } else {
+                    return false;
                 }
             }
         } else {
             spillLocation = waterSpill(data, terrain, location);
             if(spillLocation > 0) {
-                dropWater(data, terrain, spillLocation);
+                return dropWater(data, terrain, spillLocation);
+            } else {
+                return false;
             }
         }
+
+        return true;
     }
 }
 
 function dumpWater(terrain, amount, location) {
     var data = process(terrain),
-        maxHold = 0,
-        map,
-        waterToRemove,
         result = "";
 
-    //check location for boundary condition
+    //check drop location for boundary condition
     if(location == 0 || location == terrain.length-1) {
         var lCheck = location == 0 ? location+1 : location-1;
         if(data[lCheck].val > data[location].val) {
@@ -194,10 +192,14 @@ function dumpWater(terrain, amount, location) {
     }
 
     for(var i=0; i<amount; i++) {
-        dropWater(data, terrain, location);
-        result = printTerrain(data, terrain);
-        console.log(result);
+        if(!dropWater(data, terrain, location)) {
+            break;
+        }
+        //show state after each drop; testing only
+        //result = printTerrain(data, terrain);
+        console.log(printTerrain(data, terrain));
     }
 
+    result = printTerrain(data, terrain);
     return result;
 }
