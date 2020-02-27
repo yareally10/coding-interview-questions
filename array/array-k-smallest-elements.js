@@ -26,7 +26,7 @@ MaxHeap.prototype = {
         this.bubbleUp(this.content.length - 1);
     },
     pop: function() {
-        var result = this.content[0],
+        let result = this.content[0],
             end = this.content.pop();
 
         if(this.content.length > 0) {
@@ -42,7 +42,7 @@ MaxHeap.prototype = {
         return this.content[0];
     },
     bubbleUp: function(index) {
-        var val = this.content[index],
+        let val = this.content[index],
             parentIndex, 
             parentVal;
 
@@ -60,7 +60,7 @@ MaxHeap.prototype = {
         }
     },
     bubbleDown: function(index) {
-        var val = this.content[index],
+        let val = this.content[index],
             len = this.size(),
             swapIndex,
             leftChildIndex, rightChildIndex,

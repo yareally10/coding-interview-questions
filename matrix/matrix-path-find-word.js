@@ -4,14 +4,14 @@ string occurs in the grid, with no overlap. Words are considered contiguous if
 the next letter in the word is up, down, left, or right of the current letter. 
 For example, suppose the grid is:
 
-x x x p
-p o o o
+x x x d
+d o o o
 o l d l
 d e x e
 s s e s
 o x r p
 
-If given the word "poodle", the function should return 4. For "espresso", the 
+If given the word "doodle", the function should return 4. For "espresso", the 
 function should return 1.
 
 
@@ -23,14 +23,14 @@ Do this for all nodes in matrix.
 
 Tests:
 findWord([
-["x", "x", "x", "p"],
-["p", "o", "o", "o"],
+["x", "x", "x", "d"],
+["d", "o", "o", "o"],
 ["o", "l", "d", "l"],
 ["d", "e", "x", "e"],
 ["s", "s", "e", "s"],
 ["o", "x", "r", "p"]
 ],
-"google");
+"doodle");
 */
 
 function zeros(row, col) {

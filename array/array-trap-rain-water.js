@@ -39,14 +39,14 @@ If that number is less than 0, do nothing, otherwise add the number to total.
 */
 
 function calculate(datum) {
-    var edge = datum.left < datum.right ? datum.left : datum.right,
+    let edge = datum.left < datum.right ? datum.left : datum.right,
         result = edge - datum.val;
 
     return result > 0 ? result : 0;
 }
 
 function countWater(arr) {
-    var i,
+    let i,
         data = [],
         len = arr.length,
         leftVal = 0,
@@ -67,5 +67,6 @@ function countWater(arr) {
         result += calculate(data[i]);
     }
 
+    console.log(data);
     return result;
 }

@@ -22,10 +22,10 @@ Otherwise, process the first element
 */
 
 function depthSumHelper(arr, currLevel) {
-    if(arr.length == 0) {
+    if(arr.length === 0) {
         return 0;
     } else {
-        var first;
+        let first;
         if(Array.isArray(arr[0])) {
             first = depthSumHelper(arr[0], currLevel+1);
         } else {

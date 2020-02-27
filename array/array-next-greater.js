@@ -5,7 +5,7 @@ of x in array that is greater than x.
 Elements for which no greater element exist, consider next greater element as -1
 
 Example: 
-Input: [9, 3, 5, 8, 7, 2, 6, 1, 4]
+Input:  [9,  3, 5, 8,  7,  2, 6,  1, 4]
 Output: [-1, 5, 8, -1, -1, 6, -1, 4, -1]
 
 Test:
@@ -24,7 +24,7 @@ Scan the array from the right.
 */
 
 function nextGreater(arr) {
-    var i,
+    let i,
         len = arr.length,
         stack = [],
         result = [];

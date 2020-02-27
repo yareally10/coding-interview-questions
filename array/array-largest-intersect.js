@@ -24,11 +24,10 @@ and max intersect if necessary.
 Otherwise, increment the counter of the array with the smaller element, 
 reset the current intersect.
 Return largest intersect once entire array is looped.
-
 */
 
 function findLargestIntersect(arr1, arr2) {
-    var i = 0,
+    let i = 0,
         j = 0,
         len1 = arr1.length,
         len2 = arr2.length,

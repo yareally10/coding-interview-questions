@@ -24,8 +24,8 @@ otherwise, search the right side using updated k (subtract size of left array)
 
 //this solution creates two extra arrays with total size of original
 function kthSmallest(arr, k) {
-    var i, 
-        pivot = arr[0], 
+    let i, 
+        [pivot] = arr, 
         left = [],
         right = [];
 
@@ -48,7 +48,7 @@ function kthSmallest(arr, k) {
 
 //solution without creating extra arrays
 function kthSmallest(arr, k) {
-  var len = arr.length,
+  let len = arr.length,
       pivot = arr[len-1],
       i,
       temp,

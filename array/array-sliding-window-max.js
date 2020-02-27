@@ -31,11 +31,10 @@ After loop, push the last maxima (top of queue) onto result
 */
 
 function subarrayMax(arr, k) {
-    var queue = [], 
-        i, 
-        maxima = [];
+    const queue = [], 
+          maxima = [];
 
-    for(i=0; i<arr.length; i++) {
+    for(let i=0; i<arr.length; i++) {
         if(i >= k) {
             maxima.push(queue[0]);
             if(arr[i-k] == queue[0]) {
@@ -47,7 +46,7 @@ function subarrayMax(arr, k) {
             queue.pop();
         }
         queue.push(arr[i]);
-        //console.log(queue);
+        console.log(`index ${i} - queue: ${queue}`);
     }
     maxima.push(queue[0]);
 

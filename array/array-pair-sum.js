@@ -19,21 +19,19 @@ If so, add the pair to result.
 */
 
 function sumPairs(arr, k) {
-    var dict = {},
-        result = [],
-        i,
-        comp;
+    const dict = {},
+          result = [];
 
-    for(i=0; i<arr.length; i++) {
-        comp = k - arr[i];
+    for(let i=0; i<arr.length; i++) {
+        let complement = k - arr[i];
         if(dict.hasOwnProperty(arr[i]) && dict[arr[i]] > 0) {
-            result.push([arr[i], comp]);
+            result.push([arr[i], complement]);
             dict[arr[i]]--;
         } else {
-            if(!dict.hasOwnProperty(comp)) {
-                dict[comp] = 1;
+            if(!dict.hasOwnProperty(complement)) {
+                dict[complement] = 1;
             } else {
-                dict[comp]++;
+                dict[complement]++;
             }
         }
     }
