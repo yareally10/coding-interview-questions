@@ -19,13 +19,13 @@ Return true if the current sum equals to the value.
 */
 
 function subarraySum(arr, val) {
-    var start = 0,
+    let start = 0,
         end = 0,
         len = arr.length,
         currSum = 0;
 
-    if(len == 0) {
-        return val == 0 ? [] : false;
+    if(len === 0) {
+        return val === 0 ? [] : false;
     }
 
     currSum = arr[0];

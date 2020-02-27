@@ -20,17 +20,17 @@ Return current max after entire array is processed
 */
 
 function maxSubarraySum(arr) {
-    var curr = 0,
+    let curr = 0,
         currArr = [],
         result = 0,
         resultArr = [];
 
-    arr.forEach(function(n) {
+    arr.forEach(n => {
         //process current element
         curr += n;
         currArr.push(n);
 
-        //update current array to filter out negatives
+        //update current array and filter out negatives
         currArr = curr > 0 ? currArr : [];
         curr = curr > 0 ? curr : 0;
         

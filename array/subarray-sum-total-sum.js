@@ -21,14 +21,12 @@ Therefore a[i] appears a total of (n-i) + (n-i)*i times
 */
 
 function allSubarraySum(arr) {
-    var i=0,
-        len = arr.length,
-        result = 0;
+  let len = arr.length,
+      result = 0;
 
-    for(i=0; i<len; i++) {
-        result += arr[i] * (len-i) * (i+1);
-    }
+  arr.forEach((n, i) => {
+  	result += n * (len - i) * (i + 1);
+  });
 
-    return result;
+  return result;
 }
-

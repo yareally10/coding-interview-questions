@@ -3,15 +3,18 @@ Given an array of (neg and pos) integers and an integer k, find the total number
 of continuous subarrays whose sum equals to k.
 
 Example: 
-Input: {2, -2, 3, 5, 4, 8, 19, 11, -7, -6, 10} and k = 8
-Output: 4
+Input: {2, -2, 3, 5, 4, 8, -12, 11, -7, -6, 10} and k = 8
+Output: 7
     {2, -2, 3, 5}
     {3, 5}
     {8}
-    {11, -7, -6, 10}
-
+    [2, -2, 3, 5, 4, 8, -12]
+    [3, 5, 4, 8, -12]
+    [4, 8, -12, 11, -7, -6, 10]
+    [11, -7, -6, 10]
+    
 Test:
-subarraySum([2, -2, 3, 5, 4, 8, 19, 11, -7, -6, 10], 8);
+subarraySum([2, -2, 3, 5, 4, 8, -12, 11, -7, -6, 10], 8);
 
 
 
@@ -25,19 +28,33 @@ For each element in list,
 */
 
 function subarraySum(arr, k) {
-    var i=0,
-        len = arr.length,
-        sum = 0,
-        data = {0: 1},
-        result = 0;
+    let sum = 0,
+        result = 0,
+        resultArr = [],
+        datum = {"count": 1, "indices": [0]},
+        data = {0: datum};
 
-    for(i=0; i<len; i++) {
-        sum += arr[i];
-        data[sum] = data.hasOwnProperty(sum) ? data[sum] + 1 : 1;
-        result += data.hasOwnProperty(sum - k) ? data[sum - k] : 0;
-    }
+    arr.forEach((n, index) => {
+        sum += n;
+        if (data.hasOwnProperty(sum)) {
+            data[sum].count = data[sum].count + 1;
+            data[sum].indices.push(index + 1);
+        } else {
+            datum = {"count": 1, "indices": [index + 1]}
+            data[sum] = datum;
+        }
 
-    //console.log(data);
+        if (data.hasOwnProperty(sum - k)) {
+            result += data[sum - k].count;
+            data[sum-k].indices.forEach(i => {
+                let currArr = arr.slice(0, index+1);
+                resultArr.push(currArr.slice(i));
+            });
+        }
+        //console.log(data);
+    });
+
+    console.log(resultArr);
     return result;
 }
 
