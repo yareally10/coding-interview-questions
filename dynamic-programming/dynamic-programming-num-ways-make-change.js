@@ -13,7 +13,7 @@ Return last value of array
 */
 
 function makeChange(val, coins) {
-    var i,
+    let i,
         memo = [1];
 
     //initialize memo
