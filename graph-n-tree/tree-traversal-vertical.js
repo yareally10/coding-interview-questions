@@ -2,7 +2,6 @@
 Given a binary tree, print it vertically, from left to right.
 
 
-
 Algorithm:
 Traverse the tree, starting from root, with distance of 0.
     When going left, use distance - 1
@@ -37,7 +36,7 @@ function verticalTraversalHelper(node, vals, distance, data) {
 }
 
 function verticalTraversal(root) {
-    var data = {}, vals = [0, 0], i, result = [];
+    let data = {}, vals = [0, 0], i, result = [];
     vals = verticalTraversalHelper(root, vals, 0, data);
 
     for(i=vals[0]; i<=vals[1]; i++) {

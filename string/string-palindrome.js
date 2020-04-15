@@ -1,7 +1,6 @@
 /*
 Palindrome. Check if given string is a palindrome.
 */
-
 //string without spaces or punctuations
 function isPalindromeBasic(str) {
     var i = 0,
@@ -47,8 +46,6 @@ function isPalindrome(str) {
 /*
 Find the longest palindrome that's a substring of the given string
 
-
-
 Algorithm:
 Try to generate palidrome from within the string.
 There are n letters and n-1 gaps as possible starts.
@@ -57,42 +54,42 @@ For each of those possibles, calculate the start and end of the possible palindr
     Update current longest if current possible is longer
 Return current max once done
 */
-function longestPalindrome(str) {
-    var i = 0,
-        len = str.length,
-        possibles = len*2 - 1,
-        currLong = 1,
-        currPalindrome = str[0],
-        currString,
-        start,
-        end,
-        isPal;
-
-    for(i=1; i<possibles; i++) {
-        if(i % 2 == 0) {
-            start = i/2 - 1;
-            end = i/2 + 1 + 1;
-        } else {
-            start = Math.floor(i/2);
-            end = Math.floor(i/2) + 1 + 1;
-        }
-        isPal = true;
-
-        while(isPal && start >= 0 && end <= len) {
-            isPal = str[start] == str[end - 1];
-            if(isPal) {
-                currString = str.substring(start, end);
-                if(currString.length > currLong) {
-                    currLong = currString.length;
-                    currPalindrome = currString;
-                }
-                start--;
-                end++;
-            } else {
-                break;
-            }
-        }
+var longestPalindrome = function(s) {
+  //validate input
+  if (s == null || s.length == 0) {
+    return s;
+  }
+  //initialize variables
+  let possibilities = s.length*2 - 1,
+      currPal = s[0],
+      result = currPal;
+  //loop through all possibilities
+  for (let i=1; i< possibilities; i++) {
+    let start, end, isPal = false;
+    if (i%2 == 0) {
+      start = i/2 - 1;
+      end = i/2 + 1;
+    } else {
+      start = Math.floor(i/2);
+      end = Math.floor(i/2) + 1;
     }
-
-    return currPalindrome;
-}
+    //check if there is a palindrome around current center
+    while (start >=0 && end < s.length) {
+      if (s[start] == s[end]) {
+        isPal = true;
+        start--;
+        end++;
+      } else {
+        break;
+      }
+    }
+    //if a palindrome has been found, compare to current longest
+    if (isPal) {
+      //the previous start is (start+1) and end is (end-1)
+      //second parameter of substring method is non-inclusive, need to increment it by 1
+      currPal = s.substring(start+1, end);
+      result = currPal.length > result.length ? currPal : result;
+    }
+  }
+  return result;
+};

@@ -3,7 +3,6 @@ Given a value and list of coins,
 list the minimum number of coins needed to make the change, if possible.
 
 
-
 Algorithm:
 f(val) = min( f(val - coins[0]) + 1, f(val - coins[1]) + 1, ... )
 
@@ -16,9 +15,9 @@ function makeChangeMinHelper(val, coins, memo) {
     return [];
   } else {
     let minimums = [],
-      nextVal = 0,
-      currMin = Number.MAX_SAFE_INTEGER,
-      currCoins = [];
+        nextVal = 0,
+        currMin = Number.MAX_SAFE_INTEGER,
+        currCoins = null;
 
     coins.forEach(coin => {
       nextVal = val - coin;

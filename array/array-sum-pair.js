@@ -10,7 +10,6 @@ Test:
 sumPairs([1, 8, 3, 5, 4, 4, 2, 2, 7, 9], 8);
 
 
-
 Algorithm:
 Store complement of each element in array in a hashtable.
 Every time an element is processed, check if its complement exists in the 
